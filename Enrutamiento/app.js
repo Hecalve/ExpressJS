@@ -2,7 +2,8 @@
 
 const express = require('express')
 const app = express()
-
+//urlencoded permite obtener la información que se envia en post por medio de la url o el cuerpo de la solicitud
+app.use(express.urlencoded({ extended: true }))
 //Enrutamiento de nuestra pagina
 
 app.get('/', (req, res) =>{
@@ -15,7 +16,13 @@ app.get('/home', (req, res) =>{
 })
 
 app.get('/inicioSesion', (req, res) => {
-    res.send('Estas en el inicio de sesión')
+    res.sendFile(__dirname + '/inicio-sesion.html')
+})
+
+app.post('/bienvenido', (req, res) => {
+    const usuario = req.body.usser
+    const contra = req.body.pass
+    res.send(`Gracias por iniciar sesión ${usuario} y tu contraseña es ${contra}`)
 })
 
 //Para manejar rutas no definidas utilizamos el comodin *
