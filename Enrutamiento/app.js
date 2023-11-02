@@ -1,10 +1,13 @@
+// app.js Es nuestro archivo de programación principal
+
 const express = require('express')
 const app = express()
 
 //Enrutamiento de nuestra pagina
 
 app.get('/', (req, res) =>{
-    res.send('Inicio')
+    //Metodo para enviar como respuesta al enlace / un archivo html
+    res.sendFile(__dirname + '/index.html')
 })
 
 app.get('/home', (req, res) =>{
@@ -17,7 +20,7 @@ app.get('/inicioSesion', (req, res) => {
 
 //Para manejar rutas no definidas utilizamos el comodin *
 app.get('*', (req, res) =>{
-    res.send('Error 400. Pagina no encontrada')
+    res.sendFile(__dirname + '/error.html')
 })
 
 app.listen(3000, () => {
